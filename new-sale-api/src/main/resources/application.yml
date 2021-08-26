@@ -1,0 +1,32 @@
+server:
+ port: 0
+ 
+spring:
+ application:
+    name: new-sale-service 
+ datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 12345 
+ jpa:
+   hibernate:
+    ddl-auto: update
+   database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+   show-sql: true
+   
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+    hostname: localhost
+  
+springdoc:
+  packagesToScan: com.otsi.retail.newSale
+  
+savecustomer:
+  url: http://localhost:8081/customer/savecustomerdetails
